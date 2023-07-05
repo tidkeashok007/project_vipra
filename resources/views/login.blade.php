@@ -30,6 +30,52 @@
 </head>
 
 <body>
+  <!-- ============================================================== -->
+                           <!-- Modal -->
+<!-- ============================================================== -->
+
+        <!-- Modal start -->
+        <div class="modal fade" id="Forgot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="card mb-0 border-0 shadow-none mb-0">
+                    <div class="card-body p-sm-5 m-lg-4">
+                      <div class="text-center mt-2">
+                        <h5 class="fs-3xl">Forgot Password?</h5>
+                          <p class="text-muted mb-4">Reset password with Vipra Home's</p>
+                          <div class="pb-4">
+                          <img src="{{url('dashassets/images/email.png')}}" alt="" class="avatar-md">
+                            </div>
+                          </div>
+
+                          <div class="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
+                            Enter your email and instructions will be sent to you!
+                          </div>
+                          <div class="p-2">
+                              <form>
+                                  <div class="mb-4">
+                                     <label class="form-label">Email</label>
+                                     <input type="email" class="form-control password-input" id="email" placeholder="Enter Email" required >
+                                 </div>
+
+                                  <div class="text-center mt-4">
+                                     <button class="btn btn-primary w-100" type="submit">Send Reset Link</button>
+                                 </div>
+                             </form><!-- end form -->
+                         </div>
+                          <div class="mt-4 text-center">
+                             <p class="mb-0">Wait, I remember my password... <a href="{{url('login')}}" class="fw-semibold text-primary text-decoration-underline"> Click here </a> </p>
+                         </div>
+                     </div><!-- end card body -->
+                 </div><!-- end card -->
+             </div>
+             <!--end col-->
+                </div>
+                
+            </div>
+            
+        </div>
+        <!--end modal -->
 
   <main>
     <div class="container">
@@ -42,7 +88,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="{{url('/')}}" class="logo d-flex align-items-center w-auto">
                   <img src="{{asset('login_assets/img/CONSTRUCTION NEW.png')}}" alt="">
-                  <span class="d-none d-lg-block">Vipra</span>
+                  <span class="d-none d-lg-block">Vipra Home's</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -55,31 +101,55 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form action="{{route('loginUser')}}" method="post" class="row g-3 needs-validation">
+
+                  @csrf
+                  
+                  @if(Session::has('success'))
+                      <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+
+                    @if(Session::has('fail'))
+                      <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
+
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Please enter your username.</div>
-                      </div>
+                      <label for="email" class="form-label">Your Email</label>
+                      <input type="email" name="email" class="form-control" id="" value="{{old('email')}}">
+                      <span class="text-danger">
+                        @error('email')
+                        {{$message}}
+                        @enderror
+                      </span>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="">
+                      <span class="text-danger">
+                        @error('password')
+                        {{$message}}
+                        @enderror
+                      </span>
+                      <div class="float-end mt-1">
+                        <a href="#" class="badge  text-danger" data-bs-toggle="modal" data-bs-target="#Forgot">Forgot password?</a> 
+                      </div>
                     </div>
 
                     <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="">
                         <label class="form-check-label" for="rememberMe">Remember me</label>
+                        <div class="invalid-feedback">Click here to remember your email and password</div>
                       </div>
                     </div>
+
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Login</button>
+                    </div>
+                    <div class="col-12">
+                      <a href="{{url('/')}}"><button class="btn btn-success w-100" type="button">Go back to Home Page</button></a>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="{{url('register')}}">Create an account</a></p>
@@ -90,7 +160,7 @@
               </div>
 
               <div class="credits">
-                Designed by <a href="{{url('/')}}">Vipra</a>
+                Designed by <a href="{{url('/')}}">Vipra Home's</a>
               </div>
 
             </div>

@@ -2,8 +2,8 @@
 @push('ul')
 <ul class="nav navbar-nav menu">
 <li><a href="{{url('/')}}">Home</a></li>
-<li><a href="{{url('sale')}}">Project</a></li>
-<li><a href="{{url('/login')}}">Log In</a></li>
+<li><a href="{{url('sale')}}">Project's</a></li>
+<li><a href="{{url('/login')}}">Login</a></li>
 <li><a href="{{url('/register')}}">Register</a></li>
 </ul>
 @endpush
@@ -348,7 +348,20 @@
         <h2>Do you have any questions</h2>
         <h2 class="second_heading">Feel free to contact us!</h2>
     </div>
-    <form method="post" action=""  role="form" class="form-inline text-right col-lg-12">
+    <form method="post" action="{{route('contact')}}"  role="form" class="form-inline text-right col-lg-12">
+    @csrf
+
+    @method('PUT')
+
+      @if(Session::has('success'))
+        <div class="alert alert-success">{{Session::get('success')}}</div>
+      @endif
+
+      @if(Session::has('fail'))
+        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+      @endif
+
+    
         <div class="form-group">
             <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
         </div>

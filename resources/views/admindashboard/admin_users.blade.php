@@ -1,11 +1,11 @@
-@extends('admin.admin_layout.main')
+@extends('admindashboard.admin_layout.main')
 
 @push('title')
-<title>Admin - Contact info</title>
+<title>Admin - User's info</title>
 @endpush
 
 @push('pannelname')
-<h3>Contact Information</h3>
+<h3>User Information</h3>
 @endpush
 
 @push('footer')
@@ -13,11 +13,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <script>document.write(new Date().getFullYear())</script> © Vipra.
+                <script>document.write(new Date().getFullYear())</script> © Vipra Home's.
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Design & Develop by Vipra
+                    Design & Develop by Vipra Home's
                 </div>
             </div>
         </div>    
@@ -31,12 +31,16 @@
         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
         <li class="nav-item">
             <a href="{{url('admindashboard')}}" class="nav-link menu-link collapsed" role="button" aria-controls="sidebarDashboards">
-                <i class="bi bi-diagram-3"></i> <span data-key="t-dashboards">Admin Dashboards</span>
+                <i class="bi bi-house"></i> <span data-key="t-dashboards">Upload New Project</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="{{url('admin_contact')}}" class="nav-link menu-link active"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Contacat Details</span> </a>
+            <a href="{{url('admin_contact')}}" class="nav-link menu-link"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Contact Details</span> </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{url('admin_users')}}" class="nav-link menu-link active"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Users Details</span> </a>
         </li>
 
         <li class="nav-item">
@@ -44,11 +48,17 @@
         </li>
 
         <li class="nav-item">
-            <a href="" class="nav-link menu-link"> <i class="bi bi-box-arrow-in-left"></i> <span data-key="t-email">log Out</span> </a>
+            <!-- Example logout link -->
+            <a href="{{route('logout')}}" class="nav-link menu-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bi bi-box-arrow-in-left"></i> <span data-key="t-logout">Logout</span></a>
+
+            <!-- Logout form -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+            </form>
         </li>
     </ul>
 @endpush
-@section('admin.admin_layout.main.container')
+@section('admindashboard.admin_layout.main.container')
        
         
         <!-- ============================================================== -->
@@ -61,7 +71,7 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title mb-3 text-center">All Contact's</h4>
+                                    <h4 class="card-title mb-3 text-center">All User's</h4>
                                 </div><!-- end card header -->
                                 <div class="card-body mt-3">
                                     <div class="table-responsive table-card">
@@ -72,18 +82,23 @@
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Email</th>
                                                     <th scope="col">Phone</th>
-                                                    <th scope="col">Massege</th>
+                                                    <th scope="col">Role</th>
+                                                    <th scope="col">Status</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
+                                            @foreach ($users as $User)
                                                 <tr>
-                                                <th scope="row"></th>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <th scope="row">{{$User->id}}</th>
+                                                <td>{{$User->name}}</td>
+                                                <td>{{$User->email}}</td>
+                                                <td>{{$User->phone}}</td>
+                                                <td>{{$User->role}}</td>
+                                                <td><span class="badge bg-success">Active</span></td>
                                                 </tr>
+                                            @endforeach
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div><!-- end card-body -->

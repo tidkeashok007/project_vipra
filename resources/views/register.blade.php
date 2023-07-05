@@ -43,7 +43,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="{{url('/')}}" class="logo d-flex align-items-center w-auto">
                   <img src="{{asset('login_assets/img/CONSTRUCTION NEW.png')}}" alt="">
-                  <span class="d-none d-lg-block">Vipra </span>
+                  <span class="d-none d-lg-block">Vipra Home's</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -56,41 +56,77 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form action="{{route('registerUser')}}" method="post" class="row g-3 needs-validation">
+
+                  @csrf
+
+                  @if(Session::has('success'))
+                    <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+
+                    @if(Session::has('fail'))
+                    <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
+
+
                     <div class="col-12">
-                      <label for="yourName" class="form-label">Your Name</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Please, enter your name!</div>
+                      <label for="name" class="form-label">Your Name</label>
+                      <input type="text" name="name" class="form-control " id="" value="{{old('name')}}">
+                      <span class="text-danger">
+                        @error('name')
+                        {{$message}}
+                        @enderror
+                      </span>
                     </div>
 
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Your Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                      <input type="email" name="email" class="form-control" id="" value="{{old('email')}}">
+                      <span class="text-danger">
+                        @error('email')
+                        {{$message}}
+                        @enderror
+                      </span>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Please choose a username.</div>
-                      </div>
+                      <label for="phone" class="form-label">Your Mobile</label>
+                      <input type="tel" name="phone" class="form-control" id="" value="{{old('phone')}}">
+                      <span class="text-danger">
+                        @error('phone')
+                        {{$message}}
+                        @enderror
+                      </span>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <label for="password-input" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="">
+                      <span class="text-danger">
+                        @error('password')
+                        {{$message}}
+                        @enderror
+                      </span>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="password-input" class="form-label">Confirm Password</label>
+                      <input type="password" name="password_confirmation" class="form-control" id="password_confirmation">
+                      <span class="text-danger">
+                        @error('confirmation_password')
+                        {{$message}}
+                        @enderror
+                      </span>
                     </div>
 
                     <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
+                        <input class="form-check-input" name="terms" type="checkbox" value="" id="" required>
+                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="">terms and conditions</a></label>
                         <div class="invalid-feedback">You must agree before submitting.</div>
                       </div>
                     </div>
+
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Create Account</button>
                     </div>
@@ -103,11 +139,7 @@
               </div>
 
               <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="{{url('/')}}">Vipra</a>
+                 Designed by <a href="{{url('/')}}">Vipra Home's</a>
               </div>
 
             </div>

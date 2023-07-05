@@ -1,11 +1,7 @@
-@extends('admin.admin_layout.main')
+@extends('admindashboard.admin_layout.main')
 
 @push('title')
 <title>Admin - Contact</title>
-@endpush
-
-@push('dash_con_about_css')
-<link href="{{url('indexassets/css/dash_con_about_css.css')}}" rel="stylesheet">
 @endpush
 
 @push('pannelname')
@@ -17,11 +13,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <script>document.write(new Date().getFullYear())</script> © Vipra.
+                <script>document.write(new Date().getFullYear())</script> © Vipra Home's.
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Design & Develop by Vipra
+                    Design & Develop by Vipra Home's
                 </div>
             </div>
         </div>    
@@ -35,12 +31,16 @@
         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
         <li class="nav-item">
             <a href="{{url('admindashboard')}}" class="nav-link menu-link collapsed" role="button" aria-controls="sidebarDashboards">
-                <i class="bi bi-diagram-3"></i> <span data-key="t-dashboards">Admin Dashboards</span>
+                <i class="bi bi-house"></i> <span data-key="t-dashboards">Upload New Project</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="{{url('admin_contact')}}" class="nav-link menu-link"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Contacat Details</span> </a>
+            <a href="{{url('admin_contact')}}" class="nav-link menu-link"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Contact Details</span> </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{url('admin_users')}}" class="nav-link menu-link"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Users Details</span> </a>
         </li>
 
         <li class="nav-item">
@@ -48,11 +48,17 @@
         </li>
 
         <li class="nav-item">
-            <a href="" class="nav-link menu-link"> <i class="bi bi-box-arrow-in-left"></i> <span data-key="t-email">log Out</span> </a>
+            <!-- Example logout link -->
+            <a href="{{route('logout')}}" class="nav-link menu-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bi bi-box-arrow-in-left"></i> <span data-key="t-logout">Logout</span></a>
+
+            <!-- Logout form -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+            </form>
         </li>
     </ul>
 @endpush
-@section('admin.admin_layout.main.container')
+@section('admindashboard.admin_layout.main.container')
   <div class="main-content">
     <div class="page-content">
       <div class="container-fluid">
@@ -65,9 +71,9 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="{{url('dashassets/images/users/avatar-1.jpg')}}" alt="Profile" class="rounded-circle">
-              <h2>Kevin Anderson</h2>
-              <h3>Web Designer</h3>
+              <img src="{{url('dashassets/images/users/avatar-1.png')}}" alt="Profile" class="rounded-circle">
+              <h2>AdminName</h2>
+              <h3>Admin</h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -113,7 +119,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Name</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                    <div class="col-lg-9 col-md-8">AdminName</div>
                   </div>
 
                   <div class="row">
@@ -123,7 +129,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                    <div class="col-lg-9 col-md-8">admin@gmail.com</div>
                   </div>
 
                 </div>
@@ -135,7 +141,7 @@
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="{{url('dashassets/images/users/avatar-1.jpg')}}" alt="Profile">
+                        <img src="{{url('dashassets/images/users/avatar-1.png')}}" alt="Profile">
                         <div class="pt-2">
                           <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
@@ -146,7 +152,7 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                        <input name="fullName" type="text" class="form-control" id="fullName" value="AdminName">
                       </div>
                     </div>
 
@@ -160,7 +166,7 @@
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                        <input name="email" type="email" class="form-control" id="Email" value="admin@gmail.com">
                       </div>
                     </div>
 

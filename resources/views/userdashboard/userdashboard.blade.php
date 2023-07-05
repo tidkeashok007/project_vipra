@@ -1,7 +1,7 @@
-@extends('admin.admin_layout.main')
+@extends('userdashboard.user_layout.main')
 
 @push('title')
-<title>Admin - Dashboard</title>
+<title>User - Dashboard</title>
 @endpush
 
 @push('pannelname')
@@ -13,11 +13,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <script>document.write(new Date().getFullYear())</script> © Vipra.
+                <script>document.write(new Date().getFullYear())</script> © Vipra Home's.
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Design & Develop by Vipra
+                    Design & Develop by Vipra Home's
                 </div>
             </div>
         </div>    
@@ -30,25 +30,31 @@
 
         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
         <li class="nav-item">
-            <a href="{{route('admindashboard')}}" class="nav-link menu-link collapsed active" role="button" aria-controls="sidebarDashboards">
-                <i class="bi bi-diagram-3"></i> <span data-key="t-dashboards">Admin Dashboards</span>
+            <a href="{{route('userdashboard')}}" class="nav-link menu-link collapsed active" role="button" aria-controls="sidebarDashboards">
+                <i class="bi bi-diagram-3"></i> <span data-key="t-dashboards">Dashboards</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a href="{{route('admin_contact')}}" class="nav-link menu-link"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Contact Details</span> </a>
+            <a href="{{route('user_contact')}}" class="nav-link menu-link"> <i class="bi bi-person-vcard"></i> <span data-key="t-email">Contact Details</span> </a>
         </li>
 
         <li class="nav-item">
-            <a href="" class="nav-link menu-link"> <i class="bi bi-person-circle"></i> <span data-key="t-email">Profile</span> </a>
+            <a href="{{route('user_profile')}}" class="nav-link menu-link"> <i class="bi bi-person-circle"></i> <span data-key="t-email">Profile</span> </a>
         </li>
 
         <li class="nav-item">
-            <a href="" class="nav-link menu-link"> <i class="bi bi-box-arrow-in-left"></i> <span data-key="t-email">log Out</span> </a>
+            <!-- Example logout link -->
+            <a href="{{route('logout')}}" class="nav-link menu-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bi bi-box-arrow-in-left"></i> <span data-key="t-logout">Logout</span></a>
+
+            <!-- Logout form -->
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+            </form>
         </li>
     </ul>
 @endpush
-@section('admin.admin_layout.main.container')
+@section('userdashboard.user_layout.main.container')
 
         <!-- ============================================================== -->
         <!-- Admin Pannel -->
@@ -60,7 +66,7 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title mb-3 text-center">Admin's</h4>
+                                    <h4 class="card-title mb-3 text-center">User</h4>
                                 </div><!-- end card header -->
                                 <div class="card-body mt-3">
                                     <div class="table-responsive table-card">
@@ -82,7 +88,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
