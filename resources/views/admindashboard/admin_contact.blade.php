@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <script>document.write(new Date().getFullYear())</script> © Vipra Home's.
+                <script>document.write(new Date().getFullYear())</script> © Vipra Homes.
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
@@ -73,6 +73,25 @@
                                 <div class="card-header">
                                     <h4 class="card-title mb-3 text-center">All Contact's</h4>
                                 </div><!-- end card header -->
+
+                                <div class="container">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <input type="search" name="search" id="" class="form-control" placeholder="Search by name or email" value="{{$search}}"/>
+                                            </div>
+
+                                            <div class="col-sm">
+                                                <button class="btn btn-primary">Search</button>
+                                                <a href="{{url('admin_contact')}}">
+                                                   <button class="btn btn-primary" type="button">Reset</button> 
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                
                                 <div class="card-body mt-3">
                                     <div class="table-responsive table-card">
                                         <table class="table align-middle table-nowrap mb-0">

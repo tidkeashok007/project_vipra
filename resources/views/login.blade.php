@@ -88,7 +88,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="{{url('/')}}" class="logo d-flex align-items-center w-auto">
                   <img src="{{asset('login_assets/img/CONSTRUCTION NEW.png')}}" alt="">
-                  <span class="d-none d-lg-block">Vipra Home's</span>
+                  <span class="d-none d-lg-block">Vipra Homes</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -139,7 +139,7 @@
 
                     <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="" required>
                         <label class="form-check-label" for="rememberMe">Remember me</label>
                         <div class="invalid-feedback">Click here to remember your email and password</div>
                       </div>
@@ -160,7 +160,7 @@
               </div>
 
               <div class="credits">
-                Designed by <a href="{{url('/')}}">Vipra Home's</a>
+                Designed by <a href="{{url('/')}}">Vipra Homes</a>
               </div>
 
             </div>

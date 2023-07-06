@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class logoutController extends Controller
 {
-     public function logout()
-{
-    Auth::logout();
-    // Additional logout logic if needed
-    return redirect('/login');
-}
+    public function logout()
+    {
+      Auth::logout();
+      // Additional logout logic if needed
+      return redirect('/login');
+    }
 }
